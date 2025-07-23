@@ -1,70 +1,65 @@
-# Getting Started with Create React App
+# 📝 Onboarding Flow - React + Redux
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a multi-step onboarding form built using **React** and **Redux**. It consists of 5 steps where users fill out different types of information, and each form is validated and stored centrally in Redux state.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🔧 Tech Stack
 
-### `npm start`
+- **React** – Frontend UI library
+- **Redux Toolkit** – Global state management
+- **React Redux** – Integration layer between React and Redux
+- **React Router DOM** – Page/routing management (if needed)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🚀 Features
 
-### `npm test`
+- Multi-step onboarding flow with 5 forms
+- Clickable step indicator for navigation
+- Form validation at each step
+- Stores form data centrally using Redux
+- Final form summarizes all data
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## 🧠 What is Redux (in simple words)?
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Redux is a **state management tool**.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Imagine you’re building a multi-page form. If you use just `useState`, each form component stores its own data — and when you switch steps, that data may disappear.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Redux solves this by:
+- Storing all form data **in one central store**
+- Letting all form components **access and update** the data
+- Remembering the current **form step**
+- Making your app more predictable and organized
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 📦 How Redux is Used in This Project
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 🔁 Redux Flow
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+1. **Store** → Holds all app-level state (`formData`, `step`)
+2. **Slice** (`onboardingSlice.js`) → Defines state + reducers
+3. **Dispatch** → When user submits a form, we `dispatch` an action to save the data
+4. **useSelector** → Components read current step or form data using `useSelector`
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+---
 
-## Learn More
+### 🧩 Redux State Structure
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```js
+{
+  onboarding: {
+    step: 1,
+    formData: {
+      step1: { firstName, lastName },
+      step2: { email, phone },
+      step3: { street, city, zip },
+      step4: { qualification, graduationYear },
+      step5: { skills }
+    }
+  }
+}
